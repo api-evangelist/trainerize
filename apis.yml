@@ -1,0 +1,133 @@
+aid: trainerize
+url: https://raw.githubusercontent.com/api-evangelist/trainerize/refs/heads/main/apis.yml
+name: ABC Trainerize
+kind: company
+description: ABC Trainerize is a personal-training and fitness-coaching software
+  platform for trainers, studios, and gyms - online training, workout programming,
+  nutrition and meal planning, habit and goal tracking, in-app messaging, and a
+  custom-branded client app. Its partner API (Studio and Enterprise plans) lets
+  integrators add, modify, and retrieve client data - clients, programs and
+  workouts, goals, habits, body stats, nutrition, appointments, tags, and
+  groups - and register webhooks for business events. ABC Trainerize is a product
+  of ABC Fitness Solutions, which acquired Trainerize in 2021.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Fitness
+- Personal Training
+- Coaching
+- Fitness Software
+- Client Management
+- SaaS
+created: '2026-07-12'
+modified: '2026-07-12'
+specificationVersion: '0.19'
+apis:
+- aid: trainerize:trainerize-clients-api
+  name: ABC Trainerize Clients API
+  tags:
+  - Clients
+  - Client Management
+  - CRM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  baseURL: https://api.trainerize.com/v03
+  properties:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+  - url: openapi/trainerize-openapi.yml
+    type: OpenAPI
+  description: Create, update, find, deactivate, and reactivate clients; assign
+    clients to trainers; and manage client tags and group membership. Used to
+    onboard clients from a form or sync them with a CRM. Modeled from ABC
+    Trainerize's documented client actions; exact paths are gated.
+- aid: trainerize:trainerize-training-api
+  name: ABC Trainerize Training Programs API
+  tags:
+  - Workout Programming
+  - Programs
+  - Workouts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  baseURL: https://api.trainerize.com/v03
+  properties:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+  - url: openapi/trainerize-openapi.yml
+    type: OpenAPI
+  description: Assign training to clients - copy a master program onto a client,
+    subscribe a client to a main or add-on program, unsubscribe from programs, add
+    the next training phase, and retrieve a client's workouts. Modeled from
+    documented program actions.
+- aid: trainerize:trainerize-client-data-api
+  name: ABC Trainerize Client Data API
+  tags:
+  - Goals
+  - Habits
+  - Nutrition
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  baseURL: https://api.trainerize.com/v03
+  properties:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+  - url: openapi/trainerize-openapi.yml
+    type: OpenAPI
+  description: Add, modify, and retrieve a client's goals, habits, body stats,
+    nutrition, and appointments. Reflects the documented ability to read and write
+    these client data domains through the API; exact request shapes are gated.
+- aid: trainerize:trainerize-messaging-api
+  name: ABC Trainerize Messaging API
+  tags:
+  - Messaging
+  - Attachments
+  - Communication
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  baseURL: https://api.trainerize.com/v03
+  properties:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+  - url: openapi/trainerize-openapi.yml
+    type: OpenAPI
+  description: Send in-app messages to clients and upload attachments such as
+    meal-plan PDFs. Modeled from the documented Send Message and Upload Attachment
+    actions.
+- aid: trainerize:trainerize-webhooks-api
+  name: ABC Trainerize Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  baseURL: https://api.trainerize.com/v03
+  properties:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+  - url: openapi/trainerize-openapi.yml
+    type: OpenAPI
+  description: Register, list, and delete webhook subscriptions that notify an
+    external system when a business event occurs - workout completed, cardio
+    completed, habit completed, daily nutrition goal hit, weight goal hit, new
+    client, new purchase, product start/end, auto-renew cancelled, and tag
+    added/removed. Webhooks are one-way, server-to-endpoint HTTP POSTs.
+common:
+- type: DomainSecurity
+  url: security/trainerize-domain-security.yml
+- type: Authentication
+  url: authentication/trainerize-authentication.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/trainerize
+- type: Website
+  url: https://www.trainerize.com
+- type: Documentation
+  url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+- type: Plans
+  url: plans/trainerize-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/trainerize-rate-limits.yml
+- type: FinOps
+  url: finops/trainerize-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

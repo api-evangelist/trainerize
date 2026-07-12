@@ -1,0 +1,764 @@
+openapi: 3.0.3
+info:
+  title: ABC Trainerize API
+  description: >-
+    Programmatic access to an ABC Trainerize personal-training / fitness-coaching
+    business. The API lets an integrator add, modify, and retrieve client data -
+    clients, training programs and workouts, goals, habits, body stats,
+    nutrition, appointments, messaging, and tags/groups - plus register webhooks
+    for business events (workout completed, new client, goal hit, and more).
+
+    ACCESS MODEL: The API is a partner / private API available only on Studio and
+    Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are
+    provisioned from the Trainerize account settings; ABC Trainerize support does
+    not assist with building API calls and the full reference is behind the
+    authenticated help center.
+
+    GROUNDING NOTE: The live API host and version prefix in `servers` below were
+    confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS /
+    ASP.NET Web API). The individual operation paths and request/response schemas
+    in this document are MODELED from ABC Trainerize's publicly documented
+    capabilities (the ABC Trainerize help center API/webhooks article and the
+    published Zapier / Latenode / partner action catalog); they are
+    representative and were NOT copied from a public OpenAPI reference, because
+    ABC Trainerize does not publish one openly. Treat exact paths, parameter
+    names, and payloads as illustrative and verify against the gated reference
+    before implementation.
+  version: v03
+  contact:
+    name: ABC Trainerize
+    url: https://www.trainerize.com
+  x-parent-company: ABC Fitness Solutions (Trainerize was acquired by ABC Fitness in 2021)
+servers:
+  - url: https://api.trainerize.com/v03
+    description: ABC Trainerize production API (host + v03 version prefix confirmed live; requires provisioned credentials)
+security:
+  - apiKey: []
+tags:
+  - name: Clients
+    description: Create, update, find, and manage clients, trainer assignment, tags, and groups.
+  - name: Training
+    description: Assign programs and workouts to clients - copy master programs, subscribe to main/add-on programs, and add training phases.
+  - name: Client Data
+    description: Retrieve and modify client goals, habits, body stats, nutrition, and appointments.
+  - name: Messaging
+    description: Send in-app messages and upload attachments / meal-plan PDFs to clients.
+  - name: Webhooks
+    description: Register and manage webhook subscriptions for ABC Trainerize business events.
+paths:
+  /client/find:
+    post:
+      operationId: findClient
+      tags:
+        - Clients
+      summary: Find a client
+      description: >-
+        Searches for a client in the business by a term such as email or name.
+        (Modeled from the documented "Find Client" search action.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientSearchInput'
+      responses:
+        '200':
+          description: Matching clients.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/addOrUpdate:
+    post:
+      operationId: addOrUpdateClient
+      tags:
+        - Clients
+      summary: Create or update a client
+      description: >-
+        Creates a new client or updates an existing one (the documented
+        "Create / Update Client V2" action). Used to onboard clients from a form
+        or CRM.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientInput'
+      responses:
+        '200':
+          description: The created or updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /client/deactivate:
+    post:
+      operationId: deactivateClient
+      tags:
+        - Clients
+      summary: Deactivate a client
+      description: Deactivates (archives) a client so they no longer count as active.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Deactivation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/reactivate:
+    post:
+      operationId: reactivateClient
+      tags:
+        - Clients
+      summary: Reactivate a client
+      description: Reactivates a previously deactivated client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Reactivation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/assignTrainer:
+    post:
+      operationId: assignTrainer
+      tags:
+        - Clients
+      summary: Assign a client to a trainer
+      description: Assigns (or reassigns) a client to a trainer within the business.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - trainerID
+              properties:
+                userID:
+                  type: integer
+                trainerID:
+                  type: integer
+      responses:
+        '200':
+          description: Assignment result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/tag:
+    post:
+      operationId: modifyClientTag
+      tags:
+        - Clients
+      summary: Add or remove a client tag
+      description: Adds a tag to or removes a tag from a client (documented add/remove tag actions).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - tag
+                - action
+              properties:
+                userID:
+                  type: integer
+                tag:
+                  type: string
+                action:
+                  type: string
+                  enum:
+                    - add
+                    - remove
+      responses:
+        '200':
+          description: Tag change result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/group:
+    post:
+      operationId: modifyClientGroup
+      tags:
+        - Clients
+      summary: Add or remove a client from a group
+      description: Adds a client to or removes a client from a group.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - groupID
+                - action
+              properties:
+                userID:
+                  type: integer
+                groupID:
+                  type: integer
+                action:
+                  type: string
+                  enum:
+                    - add
+                    - remove
+      responses:
+        '200':
+          description: Group change result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/copyMaster:
+    post:
+      operationId: copyMasterProgram
+      tags:
+        - Training
+      summary: Copy a master program to a client
+      description: Copies a master training program onto a client's calendar (documented "Copy Master Program to Client").
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - programID
+              properties:
+                userID:
+                  type: integer
+                programID:
+                  type: integer
+                startDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Copy result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/subscribe:
+    post:
+      operationId: subscribeProgram
+      tags:
+        - Training
+      summary: Subscribe a client to a main or add-on program
+      description: >-
+        Subscribes a client to a main program or an add-on program (documented
+        "Subscribe to Main Program" / "Subscribe to Addon Program" actions).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - programID
+                - type
+              properties:
+                userID:
+                  type: integer
+                programID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                    - main
+                    - addon
+      responses:
+        '200':
+          description: Subscription result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/unsubscribe:
+    post:
+      operationId: unsubscribeProgram
+      tags:
+        - Training
+      summary: Unsubscribe a client from programs
+      description: Removes a client's subscription to one or more programs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Unsubscribe result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/addTrainingPhase:
+    post:
+      operationId: addTrainingPhase
+      tags:
+        - Training
+      summary: Add the next training phase
+      description: Adds the next training phase for a client (documented "Add Next Training Phase" action).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+              properties:
+                userID:
+                  type: integer
+                phaseID:
+                  type: integer
+      responses:
+        '200':
+          description: Result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workout/getList:
+    post:
+      operationId: getWorkoutList
+      tags:
+        - Training
+      summary: List a client's workouts
+      description: Retrieves a client's scheduled and completed workouts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Workouts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Workout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /clientData/get:
+    post:
+      operationId: getClientData
+      tags:
+        - Client Data
+      summary: Retrieve client data records
+      description: >-
+        Retrieves records for a client across a data domain - goals, habits,
+        body stats, nutrition, or appointments. (Modeled; the documented API
+        supports adding, modifying, and retrieving these data types.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - type
+              properties:
+                userID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                    - goal
+                    - habit
+                    - bodyStat
+                    - nutrition
+                    - appointment
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Data records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /clientData/set:
+    post:
+      operationId: setClientData
+      tags:
+        - Client Data
+      summary: Add or modify a client data record
+      description: Adds or updates a goal, habit, body stat, nutrition, or appointment record for a client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - type
+                - record
+              properties:
+                userID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                    - goal
+                    - habit
+                    - bodyStat
+                    - nutrition
+                    - appointment
+                record:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /message/send:
+    post:
+      operationId: sendMessage
+      tags:
+        - Messaging
+      summary: Send a message to a client
+      description: Sends an in-app message to a client (documented "Send Message in Trainerize" action).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userID
+                - message
+              properties:
+                userID:
+                  type: integer
+                message:
+                  type: string
+      responses:
+        '200':
+          description: Send result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /attachment/upload:
+    post:
+      operationId: uploadAttachment
+      tags:
+        - Messaging
+      summary: Upload an attachment
+      description: >-
+        Uploads an attachment (for example a meal-plan PDF) to a client
+        (documented "Upload Attachment" / "Attach Meal Plan PDF" actions).
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - userID
+                - file
+              properties:
+                userID:
+                  type: integer
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Upload result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhook/register:
+    post:
+      operationId: registerWebhook
+      tags:
+        - Webhooks
+      summary: Register a webhook
+      description: >-
+        Registers a webhook subscription that posts to a target URL when a
+        business event occurs. Documented events include workout completed,
+        cardio completed, habit completed, daily nutrition goal hit, weight goal
+        hit, new client, new purchase, product start/end, auto-renew cancelled,
+        and tag added/removed.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '200':
+          description: The registered webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /webhook/list:
+    post:
+      operationId: listWebhooks
+      tags:
+        - Webhooks
+      summary: List webhooks
+      description: Lists the webhook subscriptions registered for the business.
+      responses:
+        '200':
+          description: Webhooks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhook/delete:
+    post:
+      operationId: deleteWebhook
+      tags:
+        - Webhooks
+      summary: Delete a webhook
+      description: Removes a webhook subscription.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - webhookID
+              properties:
+                webhookID:
+                  type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key provisioned in the ABC Trainerize account settings (Studio and
+        Enterprise plans only). An OAuth2 connection is also offered for partner
+        integrations. The exact header format is documented only in the gated
+        help center; model as an Authorization header credential.
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    ClientRef:
+      type: object
+      required:
+        - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
+    ClientSearchInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        searchTerm:
+          type: string
+        trainerID:
+          type: integer
+    ClientInput:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        trainerID:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+    Client:
+      allOf:
+        - $ref: '#/components/schemas/ClientInput'
+        - type: object
+          properties:
+            userID:
+              type: integer
+            status:
+              type: string
+              enum:
+                - active
+                - inactive
+    Workout:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        date:
+          type: string
+          format: date
+        completed:
+          type: boolean
+    WebhookInput:
+      type: object
+      required:
+        - url
+        - event
+      properties:
+        url:
+          type: string
+          format: uri
+        event:
+          type: string
+          enum:
+            - workoutCompleted
+            - cardioCompleted
+            - habitCompleted
+            - dailyNutritionGoalHit
+            - weightGoalHit
+            - newClient
+            - newPurchase
+            - productStart
+            - productEnd
+            - autoRenewCancelled
+            - tagAdded
+            - tagRemoved
+    Webhook:
+      allOf:
+        - $ref: '#/components/schemas/WebhookInput'
+        - type: object
+          properties:
+            webhookID:
+              type: string

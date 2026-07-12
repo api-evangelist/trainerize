@@ -1,0 +1,127 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ABC Trainerize
+providerId: trainerize
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Fitness
+- Personal Training
+- Coaching
+- Fitness Software
+- SaaS
+- Plans
+description: >-
+  ABC Trainerize is sold as tiered SaaS subscriptions priced primarily on the
+  number of active clients, plus paid add-ons (for example a custom-branded app
+  and integrated payments). The developer API and webhook registration are NOT
+  available on the entry tiers: API access is included only on the Studio and
+  Enterprise plans, with Enterprise adding dedicated onboarding and integration
+  support. Exact per-tier prices and client bands are not reconciled here -
+  verify on the ABC Trainerize pricing page.
+notes: >-
+  The API itself carries no separate metered fee; it is a capability gated by
+  subscription tier. Plan names and client-count banding follow ABC Trainerize's
+  published packaging; dollar amounts were intentionally left unpriced to avoid
+  fabrication. Verify current tiers, prices, and add-on costs during
+  reconciliation.
+sources:
+- https://www.trainerize.com/
+- https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+- https://www.trainerize.com/enterprise/
+plans:
+- id: trainerize-trial
+  name: Free Trial
+  type: free
+  description: >-
+    Time-limited free trial of the ABC Trainerize platform for evaluation. No
+    API access.
+  entries:
+  - label: Trial Access
+    name: trial_access
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (time-limited trial)
+    userMultiplied: false
+  elements:
+  - name: Full Platform Trial
+  - name: No API Access
+- id: trainerize-grow
+  name: Grow Business (Tiered by Clients)
+  type: paid
+  description: >-
+    Core coaching tiers priced by the number of active clients (online training,
+    workout programming, nutrition, habits, messaging, client app). Entry and
+    mid tiers do not include the developer API or webhooks.
+  entries:
+  - label: Active Clients
+    name: active_clients
+    type: usage
+    metric: clients
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: subscription banded by active client count (see pricing page)
+    userMultiplied: false
+  elements:
+  - name: Online Training and Workout Programming
+  - name: Nutrition and Meal Planning
+  - name: Habits and Goals
+  - name: In-App Messaging
+  - name: No API Access
+- id: trainerize-studio
+  name: Studio
+  type: paid
+  description: >-
+    Higher tier for studios and gyms with team features and add-ons such as a
+    custom-branded app. Includes access to the ABC Trainerize API and webhook
+    registration.
+  entries:
+  - label: Studio Subscription
+    name: studio_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: subscription (see pricing page)
+    userMultiplied: false
+  elements:
+  - name: API Access
+  - name: Webhook Registration
+  - name: Team / Multi-Trainer Features
+  - name: Custom-Branded App (add-on)
+- id: trainerize-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom plan for large gyms, franchises, and brands. Includes the API and
+    webhooks plus dedicated support for integration setup and management, and
+    negotiated terms.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: API Access
+  - name: Webhook Registration
+  - name: Dedicated Integration Support
+  - name: Custom Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

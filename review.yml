@@ -1,0 +1,128 @@
+aid: trainerize
+name: ABC Trainerize
+review:
+  question: Does Trainerize expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-12'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. ABC Trainerize's documented developer
+    surface is a request/response REST API plus one-way outbound webhooks. The
+    help center describes the API as two-way request/response and webhooks as
+    one-way notifications that POST to an external system when an event happens.
+    No WebSocket (ws:// or wss://) or SSE server-push transport is documented on
+    Trainerize's own API, so there is no realtime channel to model. The in-app
+    client/trainer chat is a product feature, not a documented public streaming
+    API.
+findings:
+  summary: |
+    ABC Trainerize does not publish a documented public WebSocket API. Trainerize
+    is a personal-training / fitness-coaching software platform (owned by ABC
+    Fitness Solutions since 2021). It offers a partner API available only on
+    Studio and Enterprise plans, used to add, modify, and retrieve client data
+    (clients, programs and workouts, goals, habits, body stats, nutrition,
+    appointments, tags, groups) and to register webhooks for business events. The
+    API is request/response REST over HTTPS; webhooks are one-way, server-to-
+    endpoint HTTP POSTs. No WebSocket or SSE endpoint is documented.
+  accessModel: |
+    The API is a private / partner API, not open self-serve. Credentials (an API
+    key and/or an OAuth2 connection) are provisioned from the Trainerize account
+    settings, and access is gated to Studio and Enterprise plans; webhook
+    registration is likewise limited to those tiers. ABC Trainerize support
+    explicitly does not help build API calls, and the full API reference lives
+    behind the authenticated help center - it is not published as an open
+    OpenAPI document.
+  parentCompany: |
+    ABC Trainerize is a product of ABC Fitness Solutions, which acquired
+    Trainerize in 2021. ABC Fitness also runs its own separate developer program
+    (developers.abcfitness.com); that is a different API surface from the
+    Trainerize API cataloged here and is not conflated with it.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.trainerize.com/v03
+      documented: true
+      note: >-
+        Host and version prefix confirmed live by direct probing (TLS 1.3,
+        Microsoft-IIS 10 / ASP.NET Web API). Operation paths and schemas are
+        modeled, not copied from a public reference.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: One-way outbound HTTP POST to a subscriber URL on business events. Not a WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in ABC Trainerize's API or webhooks materials as of the review date.
+  endpointsConfirmed:
+    - HOST   https://api.trainerize.com (live; TLS 1.3; Microsoft-IIS 10 / ASP.NET Web API; behind Cloudflare + AWS ELB)
+    - PREFIX https://api.trainerize.com/v03 (version path returns 200; unknown paths under it return ASP.NET Web API "No HTTP resource was found" 404s)
+  endpointsModeled:
+    - POST /v03/client/find
+    - POST /v03/client/addOrUpdate
+    - POST /v03/client/deactivate
+    - POST /v03/client/reactivate
+    - POST /v03/client/assignTrainer
+    - POST /v03/client/tag
+    - POST /v03/client/group
+    - POST /v03/program/copyMaster
+    - POST /v03/program/subscribe
+    - POST /v03/program/unsubscribe
+    - POST /v03/program/addTrainingPhase
+    - POST /v03/workout/getList
+    - POST /v03/clientData/get
+    - POST /v03/clientData/set
+    - POST /v03/message/send
+    - POST /v03/attachment/upload
+    - POST /v03/webhook/register
+    - POST /v03/webhook/list
+    - POST /v03/webhook/delete
+  modeledCapabilitiesSource: |
+    The modeled operations correspond one-to-one with ABC Trainerize's publicly
+    documented capabilities: the help center API/webhooks article (add/modify/
+    retrieve clients, goals, habits, body stats, nutrition, workouts,
+    appointments; webhook events) and the published partner action catalog
+    (Zapier lists Find Client, Create/Update Client V2, Deactivate/Reactivate
+    Client, Assign To, Add/Remove Tag, Add to Group/Remove From Groups, Copy
+    Master Program to Client, Subscribe to Main/Addon Program, Unsubscribe From
+    Programs, Add Next Training Phase, Send Message in Trainerize, Upload
+    Attachment, Attach Meal Plan PDF; and triggers Workout Completed, Cardio
+    Completed, Habit Completed, Daily Nutrition Goal Hit, Weight Goal Hit, New
+    Client, New Purchase, Product Start/End, Auto-Renew Cancelled, Tag
+    Added/Removed). Exact literal paths, parameter names, and payloads were NOT
+    confirmable from a public reference and should be verified against the gated
+    documentation.
+sources:
+  - url: https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+    type: Documentation
+    note: Official "Using API and Webhooks With ABC Trainerize" article. Confirms REST API + one-way webhooks, Studio/Enterprise gating, data domains, and webhook events. Returns 403 to automated fetchers (human-accessible help center).
+  - url: https://resources.trainerize.com/guide-to-apis-for-fitness-businesses
+    type: Documentation
+    note: Trainerize marketing guide on using APIs for fitness businesses.
+  - url: https://zapier.com/apps/abc-trainerize/integrations
+    type: IntegrationCatalog
+    note: Published ABC Trainerize triggers and actions - primary source for the modeled operation set.
+  - url: https://latenode.com/integrations/trainerize
+    type: IntegrationCatalog
+    note: Additional partner trigger/action catalog corroborating client and tag operations.
+  - url: https://apitracker.io/a/trainerize
+    type: Reference
+    note: Third-party API tracker profile; confirms OAuth2 + API key auth and webhook availability.
+  - url: https://api.trainerize.com/v03
+    type: LiveProbe
+    note: Direct probe on 2026-07-12 - host live, TLS 1.3, Microsoft-IIS 10 / ASP.NET Web API, v03 prefix returns 200; unknown sub-paths return ASP.NET "No HTTP resource" 404s.
+  - url: https://developers.abcfitness.com/
+    type: Reference
+    note: Parent company (ABC Fitness Solutions) developer portal - a separate API surface, noted to avoid conflation.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. ABC Trainerize's own public API is
+    request/response REST plus one-way outbound webhooks, so no AsyncAPI document
+    was created - there is no server-push (WebSocket/SSE) transport on
+    Trainerize's own API to model. The API is partner-provisioned and gated to
+    Studio/Enterprise plans; the live host and v03 version prefix were confirmed
+    by probing, while operation paths and schemas in the OpenAPI are modeled from
+    documented capabilities and flagged as such.

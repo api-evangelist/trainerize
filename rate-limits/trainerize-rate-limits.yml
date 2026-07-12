@@ -1,0 +1,57 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ABC Trainerize
+providerId: trainerize
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Fitness
+- Personal Training
+- SaaS
+- Rate Limiting
+- Quotas
+description: >-
+  ABC Trainerize does not publish fixed numeric rate limits for its API in any
+  openly accessible material. The API is a partner / private API gated to Studio
+  and Enterprise plans, and any per-account request ceilings would be governed by
+  the authenticated partner agreement rather than a public quota. Practical
+  throughput is also bounded by the business's active-client footprint, since the
+  API operates on client records. Webhook delivery is one-way outbound HTTP POST
+  to a subscriber URL; retry/backoff behavior is not publicly documented.
+notes: >-
+  No numeric per-minute or per-day limits were confirmable from public sources as
+  of the review date. Integrators should implement conservative pacing and
+  exponential backoff with jitter, honor any Retry-After header, and confirm
+  concrete limits with ABC Trainerize during partner onboarding. Values below are
+  modeled, not reconciled.
+sources:
+- https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+- https://apitracker.io/a/trainerize
+responseCodes:
+  throttled: 429
+limits:
+- name: API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the partner API. Governed by the Studio/Enterprise agreement.
+- name: Plan Gating
+  scope: account
+  metric: access
+  limit: Studio and Enterprise only
+  notes: API access and webhook registration are unavailable on entry tiers regardless of request volume.
+- name: Webhook Delivery
+  scope: subscription
+  metric: events
+  limit: event-driven
+  notes: Webhooks fire per business event (workout completed, new client, etc.); no documented delivery-rate cap.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Partner Provisioning
+  description: Effective limits are set per business through the partner/API provisioning in Trainerize settings rather than a public quota.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

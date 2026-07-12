@@ -1,0 +1,37 @@
+generated: '2026-07-12'
+method: derived
+source: openapi/trainerize-openapi.yml
+summary:
+  types:
+  - apiKey
+  - oauth2
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  header: Authorization
+  description: >-
+    API key provisioned from the ABC Trainerize account settings. API access is
+    limited to Studio and Enterprise plans. Passed as an Authorization header
+    credential. The exact header format is documented only in the gated ABC
+    Trainerize help center; modeled here as an Authorization header key.
+  sources:
+  - https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+  - https://apitracker.io/a/trainerize
+- name: oauth2
+  type: oauth2
+  description: >-
+    OAuth2 connection offered for partner integrations, obtained from the
+    Trainerize settings alongside the API key option. Grant flow and scope
+    details are behind the gated help center and were not publicly confirmable.
+  sources:
+  - https://apitracker.io/a/trainerize
+notes: >-
+  Trainerize's API is partner / private, not open self-serve: credentials are
+  provisioned per business (Studio/Enterprise), and ABC Trainerize support does
+  not assist with building API calls. Auth type is confirmed (API key and OAuth2);
+  the precise header name/format and OAuth endpoints are modeled because the full
+  reference is authenticated.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

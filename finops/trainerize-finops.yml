@@ -1,0 +1,88 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: ABC Trainerize
+providerId: trainerize
+created: '2026-07-12'
+modified: '2026-07-12'
+reconciled: false
+tags:
+- Fitness
+- Personal Training
+- Coaching
+- SaaS
+- FinOps
+- Cost Management
+description: >-
+  FinOps view of ABC Trainerize spend. Trainerize is a per-client SaaS
+  subscription, not a usage-metered API product: cost is driven by the plan tier
+  and the number of active clients, plus paid add-ons (custom-branded app,
+  integrated payments). The API and webhooks are a capability unlocked by the
+  Studio and Enterprise tiers rather than a separately billed, per-call meter -
+  so the dominant cost lever for an API integrator is the subscription tier
+  required to obtain API access, not request volume.
+notes: >-
+  Per-tier prices and client bands are not reconciled here; verify on the ABC
+  Trainerize pricing page. There is no published per-request or per-webhook API
+  fee. Cost tiers below describe the subscription drivers, not an API usage meter.
+sources:
+- https://www.trainerize.com/
+- https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
+- https://www.trainerize.com/enterprise/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: ABC Trainerize
+serviceCategory: Fitness and Coaching Software (SaaS)
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: ABC Trainerize
+  ServiceCategory: Fitness and Coaching Software
+  ProviderName: ABC Trainerize
+  PublisherName: ABC Trainerize
+  InvoiceIssuerName: ABC Fitness Solutions
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: active_clients
+  description: Number of active clients on the account, the primary subscription price driver.
+  unit: clients
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: plan_tier
+  description: Subscription tier (entry / Studio / Enterprise); determines API and webhook eligibility.
+  unit: tier
+  aggregation: last
+  dimensions:
+  - account
+- name: add_ons
+  description: Paid add-ons such as a custom-branded app or integrated payments.
+  unit: add-ons
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track the subscription tier and active-client count that drive the monthly invoice, plus any add-on charges.
+- name: Allocation
+  description: Attribute the Trainerize subscription (and the Studio/Enterprise premium required for API access) to the team or product that depends on the integration.
+- name: Optimization
+  description: Right-size the plan tier to actual active-client volume; only pay the Studio/Enterprise premium when the API/webhooks are genuinely needed.
+- name: Accountability
+  description: Assign an owner for the subscription and review active-client counts and add-ons against budget each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,242 @@
+{
+  "info": {
+    "name": "ABC Trainerize API",
+    "description": "Partner API for ABC Trainerize personal-training / fitness-coaching software (a product of ABC Fitness Solutions). Add, modify, and retrieve client data - clients, programs and workouts, goals, habits, body stats, nutrition, appointments, tags, groups - and register webhooks for business events. Access is limited to Studio and Enterprise plans; credentials (API key / OAuth2) are provisioned in Trainerize settings. Base URL host and v03 version prefix confirmed live; operation paths are MODELED from ABC Trainerize's documented capabilities and partner action catalog, not a public OpenAPI reference - verify against the gated docs before use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.trainerize.com/v03", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Find a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"client@example.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/client/find", "host": ["{{baseUrl}}"], "path": ["client", "find"] },
+            "description": "Searches for a client by email, name, or trainer. Modeled from the documented Find Client action."
+          }
+        },
+        {
+          "name": "Create or update a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"client@example.com\",\n  \"firstName\": \"Jamie\",\n  \"lastName\": \"Rivera\",\n  \"trainerID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/client/addOrUpdate", "host": ["{{baseUrl}}"], "path": ["client", "addOrUpdate"] },
+            "description": "Creates or updates a client (documented Create/Update Client V2 action)."
+          }
+        },
+        {
+          "name": "Deactivate a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/client/deactivate", "host": ["{{baseUrl}}"], "path": ["client", "deactivate"] },
+            "description": "Deactivates (archives) a client."
+          }
+        },
+        {
+          "name": "Reactivate a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/client/reactivate", "host": ["{{baseUrl}}"], "path": ["client", "reactivate"] },
+            "description": "Reactivates a previously deactivated client."
+          }
+        },
+        {
+          "name": "Assign a client to a trainer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"trainerID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/client/assignTrainer", "host": ["{{baseUrl}}"], "path": ["client", "assignTrainer"] },
+            "description": "Assigns or reassigns a client to a trainer."
+          }
+        },
+        {
+          "name": "Add or remove a client tag",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"tag\": \"vip\",\n  \"action\": \"add\"\n}" },
+            "url": { "raw": "{{baseUrl}}/client/tag", "host": ["{{baseUrl}}"], "path": ["client", "tag"] },
+            "description": "Adds or removes a tag on a client."
+          }
+        },
+        {
+          "name": "Add or remove a client from a group",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"groupID\": 0,\n  \"action\": \"add\"\n}" },
+            "url": { "raw": "{{baseUrl}}/client/group", "host": ["{{baseUrl}}"], "path": ["client", "group"] },
+            "description": "Adds or removes a client from a group."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Training",
+      "item": [
+        {
+          "name": "Copy a master program to a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"programID\": 0,\n  \"startDate\": \"2026-07-12\"\n}" },
+            "url": { "raw": "{{baseUrl}}/program/copyMaster", "host": ["{{baseUrl}}"], "path": ["program", "copyMaster"] },
+            "description": "Copies a master program onto a client (documented Copy Master Program to Client)."
+          }
+        },
+        {
+          "name": "Subscribe a client to a program",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"programID\": 0,\n  \"type\": \"main\"\n}" },
+            "url": { "raw": "{{baseUrl}}/program/subscribe", "host": ["{{baseUrl}}"], "path": ["program", "subscribe"] },
+            "description": "Subscribes a client to a main or add-on program."
+          }
+        },
+        {
+          "name": "Unsubscribe a client from programs",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/program/unsubscribe", "host": ["{{baseUrl}}"], "path": ["program", "unsubscribe"] },
+            "description": "Removes a client's subscription to one or more programs."
+          }
+        },
+        {
+          "name": "Add the next training phase",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/program/addTrainingPhase", "host": ["{{baseUrl}}"], "path": ["program", "addTrainingPhase"] },
+            "description": "Adds the next training phase for a client (documented Add Next Training Phase)."
+          }
+        },
+        {
+          "name": "List a client's workouts",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/workout/getList", "host": ["{{baseUrl}}"], "path": ["workout", "getList"] },
+            "description": "Retrieves a client's scheduled and completed workouts."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Client Data",
+      "item": [
+        {
+          "name": "Retrieve client data records",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"type\": \"goal\"\n}" },
+            "url": { "raw": "{{baseUrl}}/clientData/get", "host": ["{{baseUrl}}"], "path": ["clientData", "get"] },
+            "description": "Retrieves goals, habits, body stats, nutrition, or appointments for a client."
+          }
+        },
+        {
+          "name": "Add or modify a client data record",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"type\": \"bodyStat\",\n  \"record\": {}\n}" },
+            "url": { "raw": "{{baseUrl}}/clientData/set", "host": ["{{baseUrl}}"], "path": ["clientData", "set"] },
+            "description": "Adds or updates a goal, habit, body stat, nutrition, or appointment record."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Messaging",
+      "item": [
+        {
+          "name": "Send a message to a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"userID\": 0,\n  \"message\": \"Great work this week!\"\n}" },
+            "url": { "raw": "{{baseUrl}}/message/send", "host": ["{{baseUrl}}"], "path": ["message", "send"] },
+            "description": "Sends an in-app message to a client (documented Send Message in Trainerize)."
+          }
+        },
+        {
+          "name": "Upload an attachment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "userID", "value": "0", "type": "text" },
+                { "key": "file", "type": "file", "src": [] }
+              ]
+            },
+            "url": { "raw": "{{baseUrl}}/attachment/upload", "host": ["{{baseUrl}}"], "path": ["attachment", "upload"] },
+            "description": "Uploads an attachment such as a meal-plan PDF to a client."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Register a webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"url\": \"https://example.com/hooks/trainerize\",\n  \"event\": \"workoutCompleted\"\n}" },
+            "url": { "raw": "{{baseUrl}}/webhook/register", "host": ["{{baseUrl}}"], "path": ["webhook", "register"] },
+            "description": "Registers a webhook subscription for a business event (workout completed, new client, goal hit, etc.)."
+          }
+        },
+        {
+          "name": "List webhooks",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/webhook/list", "host": ["{{baseUrl}}"], "path": ["webhook", "list"] },
+            "description": "Lists the webhook subscriptions registered for the business."
+          }
+        },
+        {
+          "name": "Delete a webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"webhookID\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/webhook/delete", "host": ["{{baseUrl}}"], "path": ["webhook", "delete"] },
+            "description": "Removes a webhook subscription."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ABC Trainerize API",
+    "version": "v03"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Clients", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Find a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/find",
+            "body": { "type": "json", "data": "{\n  \"email\": \"client@example.com\"\n}" }
+          },
+          "docs": "Searches for a client by email, name, or trainer. Modeled from the documented Find Client action."
+        },
+        {
+          "info": { "name": "Create or update a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/addOrUpdate",
+            "body": { "type": "json", "data": "{\n  \"email\": \"client@example.com\",\n  \"firstName\": \"Jamie\",\n  \"lastName\": \"Rivera\"\n}" }
+          },
+          "docs": "Creates or updates a client (documented Create/Update Client V2 action)."
+        },
+        {
+          "info": { "name": "Deactivate a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/deactivate",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0\n}" }
+          },
+          "docs": "Deactivates (archives) a client."
+        },
+        {
+          "info": { "name": "Reactivate a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/reactivate",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0\n}" }
+          },
+          "docs": "Reactivates a previously deactivated client."
+        },
+        {
+          "info": { "name": "Assign a client to a trainer.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/assignTrainer",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"trainerID\": 0\n}" }
+          },
+          "docs": "Assigns or reassigns a client to a trainer."
+        },
+        {
+          "info": { "name": "Add or remove a client tag.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/tag",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"tag\": \"vip\",\n  \"action\": \"add\"\n}" }
+          },
+          "docs": "Adds or removes a tag on a client."
+        },
+        {
+          "info": { "name": "Add or remove a client from a group.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/group",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"groupID\": 0,\n  \"action\": \"add\"\n}" }
+          },
+          "docs": "Adds or removes a client from a group."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Training", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Copy a master program to a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/copyMaster",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"programID\": 0,\n  \"startDate\": \"2026-07-12\"\n}" }
+          },
+          "docs": "Copies a master program onto a client (documented Copy Master Program to Client)."
+        },
+        {
+          "info": { "name": "Subscribe a client to a program.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/subscribe",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"programID\": 0,\n  \"type\": \"main\"\n}" }
+          },
+          "docs": "Subscribes a client to a main or add-on program."
+        },
+        {
+          "info": { "name": "Unsubscribe a client from programs.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/unsubscribe",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0\n}" }
+          },
+          "docs": "Removes a client's subscription to one or more programs."
+        },
+        {
+          "info": { "name": "Add the next training phase.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/addTrainingPhase",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0\n}" }
+          },
+          "docs": "Adds the next training phase for a client (documented Add Next Training Phase)."
+        },
+        {
+          "info": { "name": "List a client's workouts.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/workout/getList",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0\n}" }
+          },
+          "docs": "Retrieves a client's scheduled and completed workouts."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Client Data", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Retrieve client data records.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/clientData/get",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"type\": \"goal\"\n}" }
+          },
+          "docs": "Retrieves goals, habits, body stats, nutrition, or appointments for a client."
+        },
+        {
+          "info": { "name": "Add or modify a client data record.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/clientData/set",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"type\": \"bodyStat\",\n  \"record\": {}\n}" }
+          },
+          "docs": "Adds or updates a goal, habit, body stat, nutrition, or appointment record."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Messaging", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Send a message to a client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/message/send",
+            "body": { "type": "json", "data": "{\n  \"userID\": 0,\n  \"message\": \"Great work this week!\"\n}" }
+          },
+          "docs": "Sends an in-app message to a client (documented Send Message in Trainerize)."
+        },
+        {
+          "info": { "name": "Upload an attachment.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/attachment/upload",
+            "body": { "type": "text", "data": "multipart/form-data: userID, file (e.g. meal-plan PDF)" }
+          },
+          "docs": "Uploads an attachment such as a meal-plan PDF to a client."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Register a webhook.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/register",
+            "body": { "type": "json", "data": "{\n  \"url\": \"https://example.com/hooks/trainerize\",\n  \"event\": \"workoutCompleted\"\n}" }
+          },
+          "docs": "Registers a webhook subscription for a business event (workout completed, new client, goal hit, etc.)."
+        },
+        {
+          "info": { "name": "List webhooks.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/list",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Lists the webhook subscriptions registered for the business."
+        },
+        {
+          "info": { "name": "Delete a webhook.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/delete",
+            "body": { "type": "json", "data": "{\n  \"webhookID\": \"\"\n}" }
+          },
+          "docs": "Removes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
