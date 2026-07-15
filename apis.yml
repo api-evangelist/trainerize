@@ -112,6 +112,8 @@ apis:
     client, new purchase, product start/end, auto-renew cancelled, and tag
     added/removed. Webhooks are one-way, server-to-endpoint HTTP POSTs.
 common:
+- type: AgenticAccess
+  url: agentic-access/trainerize-agentic-access.yml
 - type: DomainSecurity
   url: security/trainerize-domain-security.yml
 - type: Authentication
