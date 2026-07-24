@@ -1,0 +1,304 @@
+openapi: 3.0.3
+info:
+  title: ABC Trainerize Client Data Clients API
+  description: 'Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).
+
+    ACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.
+
+    GROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize''s publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.'
+  version: v03
+  contact:
+    name: ABC Trainerize
+    url: https://www.trainerize.com
+  x-parent-company: ABC Fitness Solutions (Trainerize was acquired by ABC Fitness in 2021)
+servers:
+- url: https://api.trainerize.com/v03
+  description: ABC Trainerize production API (host + v03 version prefix confirmed live; requires provisioned credentials)
+security:
+- apiKey: []
+tags:
+- name: Clients
+  description: Create, update, find, and manage clients, trainer assignment, tags, and groups.
+paths:
+  /client/find:
+    post:
+      operationId: findClient
+      tags:
+      - Clients
+      summary: Find a client
+      description: Searches for a client in the business by a term such as email or name. (Modeled from the documented "Find Client" search action.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientSearchInput'
+      responses:
+        '200':
+          description: Matching clients.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/addOrUpdate:
+    post:
+      operationId: addOrUpdateClient
+      tags:
+      - Clients
+      summary: Create or update a client
+      description: Creates a new client or updates an existing one (the documented "Create / Update Client V2" action). Used to onboard clients from a form or CRM.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientInput'
+      responses:
+        '200':
+          description: The created or updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /client/deactivate:
+    post:
+      operationId: deactivateClient
+      tags:
+      - Clients
+      summary: Deactivate a client
+      description: Deactivates (archives) a client so they no longer count as active.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Deactivation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/reactivate:
+    post:
+      operationId: reactivateClient
+      tags:
+      - Clients
+      summary: Reactivate a client
+      description: Reactivates a previously deactivated client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Reactivation result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/assignTrainer:
+    post:
+      operationId: assignTrainer
+      tags:
+      - Clients
+      summary: Assign a client to a trainer
+      description: Assigns (or reassigns) a client to a trainer within the business.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - trainerID
+              properties:
+                userID:
+                  type: integer
+                trainerID:
+                  type: integer
+      responses:
+        '200':
+          description: Assignment result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/tag:
+    post:
+      operationId: modifyClientTag
+      tags:
+      - Clients
+      summary: Add or remove a client tag
+      description: Adds a tag to or removes a tag from a client (documented add/remove tag actions).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - tag
+              - action
+              properties:
+                userID:
+                  type: integer
+                tag:
+                  type: string
+                action:
+                  type: string
+                  enum:
+                  - add
+                  - remove
+      responses:
+        '200':
+          description: Tag change result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/group:
+    post:
+      operationId: modifyClientGroup
+      tags:
+      - Clients
+      summary: Add or remove a client from a group
+      description: Adds a client to or removes a client from a group.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - groupID
+              - action
+              properties:
+                userID:
+                  type: integer
+                groupID:
+                  type: integer
+                action:
+                  type: string
+                  enum:
+                  - add
+                  - remove
+      responses:
+        '200':
+          description: Group change result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ClientRef:
+      type: object
+      required:
+      - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
+    Client:
+      allOf:
+      - $ref: '#/components/schemas/ClientInput'
+      - type: object
+        properties:
+          userID:
+            type: integer
+          status:
+            type: string
+            enum:
+            - active
+            - inactive
+    ClientInput:
+      type: object
+      required:
+      - email
+      properties:
+        email:
+          type: string
+          format: email
+        firstName:
+          type: string
+        lastName:
+          type: string
+        phone:
+          type: string
+        trainerID:
+          type: integer
+        tags:
+          type: array
+          items:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    ClientSearchInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        searchTerm:
+          type: string
+        trainerID:
+          type: integer
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key provisioned in the ABC Trainerize account settings (Studio and Enterprise plans only). An OAuth2 connection is also offered for partner integrations. The exact header format is documented only in the gated help center; model as an Authorization header credential.

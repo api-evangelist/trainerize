@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: ABC Trainerize Client Data API
+  description: 'Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).
+
+    ACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.
+
+    GROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize''s publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.'
+  version: v03
+  contact:
+    name: ABC Trainerize
+    url: https://www.trainerize.com
+  x-parent-company: ABC Fitness Solutions (Trainerize was acquired by ABC Fitness in 2021)
+servers:
+- url: https://api.trainerize.com/v03
+  description: ABC Trainerize production API (host + v03 version prefix confirmed live; requires provisioned credentials)
+security:
+- apiKey: []
+tags:
+- name: Client Data
+  description: Retrieve and modify client goals, habits, body stats, nutrition, and appointments.
+paths:
+  /clientData/get:
+    post:
+      operationId: getClientData
+      tags:
+      - Client Data
+      summary: Retrieve client data records
+      description: Retrieves records for a client across a data domain - goals, habits, body stats, nutrition, or appointments. (Modeled; the documented API supports adding, modifying, and retrieving these data types.)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - type
+              properties:
+                userID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                  - goal
+                  - habit
+                  - bodyStat
+                  - nutrition
+                  - appointment
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Data records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /clientData/set:
+    post:
+      operationId: setClientData
+      tags:
+      - Client Data
+      summary: Add or modify a client data record
+      description: Adds or updates a goal, habit, body stat, nutrition, or appointment record for a client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - type
+              - record
+              properties:
+                userID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                  - goal
+                  - habit
+                  - bodyStat
+                  - nutrition
+                  - appointment
+                record:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  schemas:
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key provisioned in the ABC Trainerize account settings (Studio and Enterprise plans only). An OAuth2 connection is also offered for partner integrations. The exact header format is documented only in the gated help center; model as an Authorization header credential.

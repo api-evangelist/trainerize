@@ -1,0 +1,218 @@
+openapi: 3.0.3
+info:
+  title: ABC Trainerize Client Data Training API
+  description: 'Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).
+
+    ACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.
+
+    GROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize''s publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.'
+  version: v03
+  contact:
+    name: ABC Trainerize
+    url: https://www.trainerize.com
+  x-parent-company: ABC Fitness Solutions (Trainerize was acquired by ABC Fitness in 2021)
+servers:
+- url: https://api.trainerize.com/v03
+  description: ABC Trainerize production API (host + v03 version prefix confirmed live; requires provisioned credentials)
+security:
+- apiKey: []
+tags:
+- name: Training
+  description: Assign programs and workouts to clients - copy master programs, subscribe to main/add-on programs, and add training phases.
+paths:
+  /program/copyMaster:
+    post:
+      operationId: copyMasterProgram
+      tags:
+      - Training
+      summary: Copy a master program to a client
+      description: Copies a master training program onto a client's calendar (documented "Copy Master Program to Client").
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - programID
+              properties:
+                userID:
+                  type: integer
+                programID:
+                  type: integer
+                startDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Copy result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/subscribe:
+    post:
+      operationId: subscribeProgram
+      tags:
+      - Training
+      summary: Subscribe a client to a main or add-on program
+      description: Subscribes a client to a main program or an add-on program (documented "Subscribe to Main Program" / "Subscribe to Addon Program" actions).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              - programID
+              - type
+              properties:
+                userID:
+                  type: integer
+                programID:
+                  type: integer
+                type:
+                  type: string
+                  enum:
+                  - main
+                  - addon
+      responses:
+        '200':
+          description: Subscription result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/unsubscribe:
+    post:
+      operationId: unsubscribeProgram
+      tags:
+      - Training
+      summary: Unsubscribe a client from programs
+      description: Removes a client's subscription to one or more programs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Unsubscribe result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /program/addTrainingPhase:
+    post:
+      operationId: addTrainingPhase
+      tags:
+      - Training
+      summary: Add the next training phase
+      description: Adds the next training phase for a client (documented "Add Next Training Phase" action).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - userID
+              properties:
+                userID:
+                  type: integer
+                phaseID:
+                  type: integer
+      responses:
+        '200':
+          description: Result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workout/getList:
+    post:
+      operationId: getWorkoutList
+      tags:
+      - Training
+      summary: List a client's workouts
+      description: Retrieves a client's scheduled and completed workouts.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRef'
+      responses:
+        '200':
+          description: Workouts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Workout'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ClientRef:
+      type: object
+      required:
+      - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
+    Workout:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        date:
+          type: string
+          format: date
+        completed:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key provisioned in the ABC Trainerize account settings (Studio and Enterprise plans only). An OAuth2 connection is also offered for partner integrations. The exact header format is documented only in the gated help center; model as an Authorization header credential.

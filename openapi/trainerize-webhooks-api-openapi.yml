@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: ABC Trainerize Client Data Webhooks API
+  description: 'Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).
+
+    ACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.
+
+    GROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize''s publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.'
+  version: v03
+  contact:
+    name: ABC Trainerize
+    url: https://www.trainerize.com
+  x-parent-company: ABC Fitness Solutions (Trainerize was acquired by ABC Fitness in 2021)
+servers:
+- url: https://api.trainerize.com/v03
+  description: ABC Trainerize production API (host + v03 version prefix confirmed live; requires provisioned credentials)
+security:
+- apiKey: []
+tags:
+- name: Webhooks
+  description: Register and manage webhook subscriptions for ABC Trainerize business events.
+paths:
+  /webhook/register:
+    post:
+      operationId: registerWebhook
+      tags:
+      - Webhooks
+      summary: Register a webhook
+      description: Registers a webhook subscription that posts to a target URL when a business event occurs. Documented events include workout completed, cardio completed, habit completed, daily nutrition goal hit, weight goal hit, new client, new purchase, product start/end, auto-renew cancelled, and tag added/removed.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookInput'
+      responses:
+        '200':
+          description: The registered webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /webhook/list:
+    post:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhooks
+      description: Lists the webhook subscriptions registered for the business.
+      responses:
+        '200':
+          description: Webhooks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /webhook/delete:
+    post:
+      operationId: deleteWebhook
+      tags:
+      - Webhooks
+      summary: Delete a webhook
+      description: Removes a webhook subscription.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - webhookID
+              properties:
+                webhookID:
+                  type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    ValidationError:
+      description: The request payload failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    WebhookInput:
+      type: object
+      required:
+      - url
+      - event
+      properties:
+        url:
+          type: string
+          format: uri
+        event:
+          type: string
+          enum:
+          - workoutCompleted
+          - cardioCompleted
+          - habitCompleted
+          - dailyNutritionGoalHit
+          - weightGoalHit
+          - newClient
+          - newPurchase
+          - productStart
+          - productEnd
+          - autoRenewCancelled
+          - tagAdded
+          - tagRemoved
+    Webhook:
+      allOf:
+      - $ref: '#/components/schemas/WebhookInput'
+      - type: object
+        properties:
+          webhookID:
+            type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key provisioned in the ABC Trainerize account settings (Studio and Enterprise plans only). An OAuth2 connection is also offered for partner integrations. The exact header format is documented only in the gated help center; model as an Authorization header credential.
