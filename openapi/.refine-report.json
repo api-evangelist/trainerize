@@ -1,0 +1,22 @@
+{
+  "provider": "trainerize",
+  "sources": [
+    "trainerize-client-data-api-openapi.yml",
+    "trainerize-clients-api-openapi.yml",
+    "trainerize-messaging-api-openapi.yml",
+    "trainerize-training-api-openapi.yml",
+    "trainerize-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "trainerize-client-data-api-openapi.yml",
+    "trainerize-clients-api-openapi.yml",
+    "trainerize-messaging-api-openapi.yml",
+    "trainerize-training-api-openapi.yml",
+    "trainerize-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
