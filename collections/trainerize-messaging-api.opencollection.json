@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ABC Trainerize Client Data Messaging API",
+    "version": "v03"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messaging",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a message to a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/message/send",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an in-app message to a client (documented \"Send Message in Trainerize\" action)."
+        },
+        {
+          "info": {
+            "name": "Upload an attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/attachment/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "userID",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads an attachment (for example a meal-plan PDF) to a client (documented \"Upload Attachment\" / \"Attach Meal Plan PDF\" actions)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

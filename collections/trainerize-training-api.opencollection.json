@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ABC Trainerize Client Data Training API",
+    "version": "v03"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Training",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Copy a master program to a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/copyMaster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copies a master training program onto a client's calendar (documented \"Copy Master Program to Client\")."
+        },
+        {
+          "info": {
+            "name": "Subscribe a client to a main or add-on program",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes a client to a main program or an add-on program (documented \"Subscribe to Main Program\" / \"Subscribe to Addon Program\" actions)."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe a client from programs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a client's subscription to one or more programs."
+        },
+        {
+          "info": {
+            "name": "Add the next training phase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/program/addTrainingPhase",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds the next training phase for a client (documented \"Add Next Training Phase\" action)."
+        },
+        {
+          "info": {
+            "name": "List a client's workouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/workout/getList",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves a client's scheduled and completed workouts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ABC Trainerize Client Data Clients API",
+    "version": "v03"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Find a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/find",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for a client in the business by a term such as email or name. (Modeled from the documented \"Find Client\" search action.)"
+        },
+        {
+          "info": {
+            "name": "Create or update a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/addOrUpdate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new client or updates an existing one (the documented \"Create / Update Client V2\" action). Used to onboard clients from a form or CRM."
+        },
+        {
+          "info": {
+            "name": "Deactivate a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/deactivate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deactivates (archives) a client so they no longer count as active."
+        },
+        {
+          "info": {
+            "name": "Reactivate a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/reactivate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reactivates a previously deactivated client."
+        },
+        {
+          "info": {
+            "name": "Assign a client to a trainer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/assignTrainer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns (or reassigns) a client to a trainer within the business."
+        },
+        {
+          "info": {
+            "name": "Add or remove a client tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/tag",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a tag to or removes a tag from a client (documented add/remove tag actions)."
+        },
+        {
+          "info": {
+            "name": "Add or remove a client from a group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/client/group",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a client to or removes a client from a group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

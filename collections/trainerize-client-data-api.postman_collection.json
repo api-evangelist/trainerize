@@ -1,0 +1,407 @@
+{
+  "item": [
+    {
+      "id": "1bc92ca8-6a63-463d-8487-0f6a3948dcb1",
+      "name": "Client Data",
+      "description": {
+        "content": "Retrieve and modify client goals, habits, body stats, nutrition, and appointments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3be2149-13fd-4cf4-8103-6d3bf55422ad",
+          "name": "Retrieve client data records",
+          "request": {
+            "name": "Retrieve client data records",
+            "description": {
+              "content": "Retrieves records for a client across a data domain - goals, habits, body stats, nutrition, or appointments. (Modeled; the documented API supports adding, modifying, and retrieving these data types.)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clientData",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32e83c58-e2ea-40eb-847e-f803a97377b2",
+              "name": "Data records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientData",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": 1038.4262059469918\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f332c941-ad05-4936-a2b9-5f1ffcaef874",
+              "name": "Missing or invalid credentials, or the plan does not include API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientData",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2498f76-d8e0-406b-8271-5ca04c717023",
+          "name": "Add or modify a client data record",
+          "request": {
+            "name": "Add or modify a client data record",
+            "description": {
+              "content": "Adds or updates a goal, habit, body stat, nutrition, or appointment record for a client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clientData",
+                "set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"record\": {\n    \"key_0\": 5959.038159724582,\n    \"key_1\": 6878.993906698469\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3342d773-ad7d-47b0-8f00-9f0ad3eed00b",
+              "name": "Result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientData",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"record\": {\n    \"key_0\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc766bb6-9ecb-4cb2-af01-6017fe862ac4",
+              "name": "Missing or invalid credentials, or the plan does not include API access.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientData",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"record\": {\n    \"key_0\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebe34258-819b-4c00-bd91-1f3527ea0a28",
+              "name": "The request payload failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clientData",
+                    "set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userID\": \"<integer>\",\n  \"type\": \"<string>\",\n  \"record\": {\n    \"key_0\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.trainerize.com/v03",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c79cc227-f679-4d64-9637-43db431a0bad",
+    "name": "ABC Trainerize Client Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).\nACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.\nGROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize's publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.\n\nContact Support:\n Name: ABC Trainerize",
+      "type": "text/plain"
+    }
+  }
+}

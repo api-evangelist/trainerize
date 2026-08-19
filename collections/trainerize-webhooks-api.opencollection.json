@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ABC Trainerize Client Data Webhooks API",
+    "version": "v03"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a webhook subscription that posts to a target URL when a business event occurs. Documented events include workout completed, cardio completed, habit completed, daily nutrition goal hit, weight goal hit, new client, new purchase, product start/end, auto-renew cancelled, and tag added/removed."
+        },
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/list"
+          },
+          "docs": "Lists the webhook subscriptions registered for the business."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.trainerize.com/v03/webhook/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
