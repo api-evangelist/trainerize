@@ -30,6 +30,13 @@ tags:
 - Coaching
 - Fitness Software
 - Client Management
+- Software-as-a-Service
+tags_raw:
+- Fitness
+- Personal Training
+- Coaching
+- Fitness Software
+- Client Management
 - SaaS
 created: '2026-07-12'
 modified: '2026-07-12'
@@ -100,6 +107,8 @@ apis:
     https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
   baseURL: https://api.trainerize.com/v03
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
