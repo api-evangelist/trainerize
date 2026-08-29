@@ -10,6 +10,18 @@ description: ABC Trainerize is a personal-training and fitness-coaching software
   workouts, goals, habits, body stats, nutrition, appointments, tags, and
   groups - and register webhooks for business events. ABC Trainerize is a product
   of ABC Fitness Solutions, which acquired Trainerize in 2021.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
