@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: ABC Trainerize Client Data Webhooks API
-  description: 'Programmatic access to an ABC Trainerize personal-training / fitness-coaching business. The API lets an integrator add, modify, and retrieve client data - clients, training programs and workouts, goals, habits, body stats, nutrition, appointments, messaging, and tags/groups - plus register webhooks for business events (workout completed, new client, goal hit, and more).
-
-    ACCESS MODEL: The API is a partner / private API available only on Studio and Enterprise plans. Credentials (an API key and/or an OAuth2 connection) are provisioned from the Trainerize account settings; ABC Trainerize support does not assist with building API calls and the full reference is behind the authenticated help center.
-
-    GROUNDING NOTE: The live API host and version prefix in `servers` below were confirmed by direct probing (https://api.trainerize.com/v03, Microsoft-IIS / ASP.NET Web API). The individual operation paths and request/response schemas in this document are MODELED from ABC Trainerize''s publicly documented capabilities (the ABC Trainerize help center API/webhooks article and the published Zapier / Latenode / partner action catalog); they are representative and were NOT copied from a public OpenAPI reference, because ABC Trainerize does not publish one openly. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated reference before implementation.'
+  title: ABC Trainerize Webhooks API
+  description: Programmatic access to an ABC Trainerize personal-training / fitness-coaching business.
   version: v03
   contact:
     name: ABC Trainerize
@@ -107,6 +103,13 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
     WebhookInput:
       type: object
       required:
@@ -131,13 +134,6 @@ components:
           - autoRenewCancelled
           - tagAdded
           - tagRemoved
-    Webhook:
-      allOf:
-      - $ref: '#/components/schemas/WebhookInput'
-      - type: object
-        properties:
-          webhookID:
-            type: string
     Error:
       type: object
       properties:
@@ -145,13 +141,13 @@ components:
           type: string
         message:
           type: string
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
+    Webhook:
+      allOf:
+      - $ref: '#/components/schemas/WebhookInput'
+      - type: object
+        properties:
+          webhookID:
+            type: string
   securitySchemes:
     apiKey:
       type: apiKey

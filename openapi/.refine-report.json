@@ -1,11 +1,7 @@
 {
   "provider": "trainerize",
   "sources": [
-    "trainerize-client-data-api-openapi.yml",
-    "trainerize-clients-api-openapi.yml",
-    "trainerize-messaging-api-openapi.yml",
-    "trainerize-training-api-openapi.yml",
-    "trainerize-webhooks-api-openapi.yml"
+    "_original/trainerize-openapi.yml"
   ],
   "outputs": [
     "trainerize-client-data-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "trainerize-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "trainerize-client-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trainerize-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trainerize-messaging-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trainerize-training-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "trainerize-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
