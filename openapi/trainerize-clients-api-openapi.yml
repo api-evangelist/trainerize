@@ -225,23 +225,11 @@ components:
           type: string
         trainerID:
           type: integer
-    Client:
-      allOf:
-      - $ref: '#/components/schemas/ClientInput'
-      - type: object
-        properties:
-          userID:
-            type: integer
-          status:
-            type: string
-            enum:
-            - active
-            - inactive
-    StatusResponse:
+    Error:
       type: object
       properties:
-        success:
-          type: boolean
+        code:
+          type: string
         message:
           type: string
     ClientInput:
@@ -264,11 +252,23 @@ components:
           type: array
           items:
             type: string
-    Error:
+    Client:
+      allOf:
+      - $ref: '#/components/schemas/ClientInput'
+      - type: object
+        properties:
+          userID:
+            type: integer
+          status:
+            type: string
+            enum:
+            - active
+            - inactive
+    StatusResponse:
       type: object
       properties:
-        code:
-          type: string
+        success:
+          type: boolean
         message:
           type: string
     ClientRef:
@@ -280,14 +280,14 @@ components:
           type: integer
           description: The ABC Trainerize user ID of the client.
   responses:
-    ValidationError:
-      description: The request payload failed validation.
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid credentials, or the plan does not include API access.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:
