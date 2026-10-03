@@ -165,13 +165,18 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    Workout:
       type: object
       properties:
-        code:
+        id:
+          type: integer
+        name:
           type: string
-        message:
+        date:
           type: string
+          format: date
+        completed:
+          type: boolean
     StatusResponse:
       type: object
       properties:
@@ -187,18 +192,13 @@ components:
         userID:
           type: integer
           description: The ABC Trainerize user ID of the client.
-    Workout:
+    Error:
       type: object
       properties:
-        id:
-          type: integer
-        name:
+        code:
           type: string
-        date:
+        message:
           type: string
-          format: date
-        completed:
-          type: boolean
   responses:
     Unauthorized:
       description: Missing or invalid credentials, or the plan does not include API access.

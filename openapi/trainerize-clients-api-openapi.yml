@@ -225,6 +225,21 @@ components:
           type: string
         trainerID:
           type: integer
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    ClientRef:
+      type: object
+      required:
+      - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
     Error:
       type: object
       properties:
@@ -232,6 +247,18 @@ components:
           type: string
         message:
           type: string
+    Client:
+      allOf:
+      - $ref: '#/components/schemas/ClientInput'
+      - type: object
+        properties:
+          userID:
+            type: integer
+          status:
+            type: string
+            enum:
+            - active
+            - inactive
     ClientInput:
       type: object
       required:
@@ -252,42 +279,15 @@ components:
           type: array
           items:
             type: string
-    Client:
-      allOf:
-      - $ref: '#/components/schemas/ClientInput'
-      - type: object
-        properties:
-          userID:
-            type: integer
-          status:
-            type: string
-            enum:
-            - active
-            - inactive
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    ClientRef:
-      type: object
-      required:
-      - userID
-      properties:
-        userID:
-          type: integer
-          description: The ABC Trainerize user ID of the client.
   responses:
-    Unauthorized:
-      description: Missing or invalid credentials, or the plan does not include API access.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    ValidationError:
-      description: The request payload failed validation.
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
       content:
         application/json:
           schema:

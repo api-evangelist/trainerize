@@ -107,21 +107,6 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  schemas:
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   responses:
     Unauthorized:
       description: Missing or invalid credentials, or the plan does not include API access.
@@ -135,6 +120,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
   securitySchemes:
     apiKey:
       type: apiKey
