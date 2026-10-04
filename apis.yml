@@ -129,6 +129,9 @@ apis:
     url: >-
       https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
 common:
+- type: CapabilityMap
+  url: capabilities/trainerize-capability-edges.yml
+  name: ABC Trainerize Business Capability Map
 - type: AgenticAccess
   url: agentic-access/trainerize-agentic-access.yml
 - type: DomainSecurity
