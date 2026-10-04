@@ -215,38 +215,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ClientSearchInput:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        searchTerm:
-          type: string
-        trainerID:
-          type: integer
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    ClientRef:
-      type: object
-      required:
-      - userID
-      properties:
-        userID:
-          type: integer
-          description: The ABC Trainerize user ID of the client.
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Client:
       allOf:
       - $ref: '#/components/schemas/ClientInput'
@@ -259,6 +227,38 @@ components:
             enum:
             - active
             - inactive
+    ClientRef:
+      type: object
+      required:
+      - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    ClientSearchInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        searchTerm:
+          type: string
+        trainerID:
+          type: integer
     ClientInput:
       type: object
       required:
