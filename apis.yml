@@ -51,7 +51,7 @@ tags_raw:
 - Client Management
 - SaaS
 created: '2026-07-12'
-modified: '2026-07-12'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: trainerize:trainerize-client-data-api
@@ -129,6 +129,10 @@ apis:
     url: >-
       https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize
 common:
+- url: https://www.trainerize.com/blog/
+  type: Blog
+- url: https://www.trainerize.com/blog/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/trainerize-capability-edges.yml
   name: ABC Trainerize Business Capability Map
