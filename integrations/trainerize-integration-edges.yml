@@ -1,0 +1,471 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/trainerize/integrations
+checked:
+- https://composio.dev/toolkits/trainerize
+- https://monid.ai/tools/trainerize
+- https://n8n.io/integrations/trainerize/
+- https://zapier.com/apps/trainerize/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: trainerize
+  url: https://zapier.com/apps/trainerize/integrations
+  external_url: http://www.trainerize.com/
+  partner_tier: GOLD
+  triggers:
+  - key: autoRenewCancelled
+    label: Auto-Renew Cancelled
+  - key: cardioCompleted
+    label: Cardio Completed
+  - key: dailyNutritionGoalHit
+    label: Daily Nutrition Goal Hit
+  - key: habitCompleted
+    label: Habit Completed
+  - key: newClient
+    label: New Client
+  - key: NewPurchase
+    label: New Purchase
+  - key: productEnd
+    label: Product End
+  - key: ProductStart
+    label: Product Start
+  - key: userTagAddedToUser
+    label: Tag Added to a Client
+  - key: userTagRemovedFromUser
+    label: Tag Removed From Client
+  - key: weightGoalHit
+    label: Weight Goal Hit
+  - key: workoutCompleted
+    label: Workout Completed
+  actions:
+  - key: activateClient
+    label: Reactivate Client
+  - key: addNextTrainingPlan
+    label: Add Next Training Phase
+  - key: addToGroup
+    label: Add to Group
+  - key: addUserTag
+    label: Add Tag to Client
+  - key: assignTo
+    label: Assign To
+  - key: attachMealPlanPDF
+    label: Attach Meal Plan PDF
+  - key: copyMasterProgramToClient
+    label: Copy Master Program to Client
+  - key: createUpdateClient_v2
+    label: Create / Update Client V2
+  - key: deactivateClient
+    label: Deactivate Client
+  - key: deleteUserTag
+    label: Remove Tag From Client
+  - key: removeFromGroups
+    label: Remove From Groups
+  - key: sendMessage
+    label: Send Message in Trainerize
+  - key: subscribeToAddonProgram
+    label: Subscribe to Addon Program
+  - key: subscribeToMainProgram
+    label: Subscribe to Main Program
+  - key: unsubscribeFromPrograms
+    label: Unsubscribe From Programs
+  - key: uploadAttachment
+    label: Upload Attachment
+  searches:
+  - key: findClient
+    label: Find Client
+edges:
+- partner_name: LeadConnector
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/leadconnector
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.leadconnectorhq.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Typeform
+  partner: typeform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/typeform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.typeform.com/signup?utm_medium=referral&utm_source=zapier&utm_campaign=zapier_integration&utm_content=marketplace
+- partner_name: SignNow
+  partner: signnow
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/signnow
+  direction: third-party
+  category: Signatures
+  partner_url: https://www.signnow.com/
+- partner_name: Dropbox Sign
+  partner: dropbox-sign
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/dropbox-sign
+  direction: third-party
+  category: Signatures
+  partner_url: https://www.hellosign.com/api
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: Strava
+  partner: strava
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/strava
+  direction: third-party
+  category: Fitness
+  partner_url: https://www.strava.com/
+- partner_name: Wix
+  partner: wix
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/wix
+  direction: third-party
+  category: Website Builders
+  partner_url: https://www.wix.com/
+- partner_name: AWeber
+  partner: aweber
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/aweber
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://zpr.io/6S2qW
+- partner_name: PayPal
+  partner: paypal
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/paypal
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://www.paypal.com/
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: Kartra
+  partner: kartra
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/kartra
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://home.kartra.com/
+- partner_name: Docusign
+  partner: docusign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/docusign
+  direction: third-party
+  category: AI Document Extraction
+  partner_url: https://go.docusign.com/trial/us-goog-trynow-display-zapier/
+- partner_name: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/acuity-scheduling
+  direction: third-party
+  category: Scheduling & Booking
+  partner_url: https://acuityscheduling.com/?utm_source=zapier.com&utm_medium=referral&utm_campaign=integration-page
+- partner_name: Stripe
+  partner: stripe
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/stripe
+  direction: third-party
+  category: Payment Processing
+  partner_url: https://stripe.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: ThriveCart
+  partner: thrivecart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/thrivecart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://thrivecart.com/
+- partner_name: Google Calendar
+  partner: google-calendar
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/google-calendar
+  direction: third-party
+  category: Calendar
+  partner_url: https://calendar.google.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: Skool
+  partner: skool
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/skool
+  direction: third-party
+  category: Education
+  partner_url: https://skool.com/
+- partner_name: Stan
+  partner: stan
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/stan-creator
+  direction: third-party
+  category: App Builder
+  partner_url: https://stan.store/
+- partner_name: Outgrow
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/outgrow
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://outgrow.co/?utm_source=zapier&utm_medium=referral&utm_campaign=app_directory_
+templates:
+- title: Subscribe new Trainerize clients to a Mailchimp mailing list
+  url: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/11457/subscribe-new-trainerize-clients-to-a-mailchimp-mailing-list
+  apps:
+  - abc-trainerize
+  - mailchimp
+- title: Welcome new Trainerize clients with outbound emails
+  url: https://zapier.com/apps/abc-trainerize/integrations/email/11461/welcome-new-trainerize-clients-with-outbound-emails
+  apps:
+  - abc-trainerize
+  - email
+- title: Create Trainerize clients from new Google Forms responses
+  url: https://zapier.com/apps/abc-trainerize/integrations/google-forms/17829/create-trainerize-clients-from-new-google-forms-responses
+  apps:
+  - google-forms
+  - abc-trainerize
+- title: Add new Stripe customers as Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/stripe/11479/add-new-stripe-customers-as-trainerize-clients
+  apps:
+  - stripe
+  - abc-trainerize
+- title: Create clients in Trainerize from new TypeForm entries
+  url: https://zapier.com/apps/abc-trainerize/integrations/typeform/75087/create-clients-in-trainerize-from-new-typeform-entries
+  apps:
+  - typeform
+  - abc-trainerize
+- title: Create clients in Trainerize when new customers are added in Square
+  url: https://zapier.com/apps/abc-trainerize/integrations/square/75664/create-clients-in-trainerize-when-new-customers-are-added-in-square
+  apps:
+  - square
+  - abc-trainerize
+- title: Create tasks in Google Task for new Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/google-tasks/160967/create-tasks-in-google-task-for-new-trainerize-clients
+  apps:
+  - abc-trainerize
+  - google-tasks
+- title: Request signatures in SignNow from new Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/signnow/11606/request-signatures-in-signnow-from-new-trainerize-clients
+  apps:
+  - abc-trainerize
+  - signnow
+- title: Create Trello cards for new Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/trello/160956/create-trello-cards-for-new-trainerize-clients
+  apps:
+  - abc-trainerize
+  - trello
+- title: Add new clients in Trainerize as a new or updated subscriber in Mailchimp
+  url: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/121197/add-new-clients-in-trainerize-as-a-new-or-updated-subscriber-in-mailchimp
+  apps:
+  - abc-trainerize
+  - mailchimp
+- title: Request signatures in Dropbox Sign for new Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/dropbox-sign/131076/request-signatures-in-dropbox-sign-for-new-trainerize-clients
+  apps:
+  - abc-trainerize
+  - dropbox-sign
+- title: Create Asana tasks for new Trainerize clients
+  url: https://zapier.com/apps/abc-trainerize/integrations/asana/160972/create-asana-tasks-for-new-trainerize-clients
+  apps:
+  - abc-trainerize
+  - asana
+template_total: 882
