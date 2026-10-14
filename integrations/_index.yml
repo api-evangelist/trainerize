@@ -117,7 +117,7 @@
   arazzo: null
 - slug: trainerize-request-signatures-in-dropbox-sign-for-new-trainerize-clients
   label: Request signatures in Dropbox Sign for new Trainerize clients
-  partner: dropbox-sign
+  partner: hellosign
   partner_name: Dropbox Sign
   category: Signatures
   use_case: Request signatures in Dropbox Sign for new Trainerize clients
