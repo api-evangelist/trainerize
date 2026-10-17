@@ -215,50 +215,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Client:
-      allOf:
-      - $ref: '#/components/schemas/ClientInput'
-      - type: object
-        properties:
-          userID:
-            type: integer
-          status:
-            type: string
-            enum:
-            - active
-            - inactive
-    ClientRef:
-      type: object
-      required:
-      - userID
-      properties:
-        userID:
-          type: integer
-          description: The ABC Trainerize user ID of the client.
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    ClientSearchInput:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        searchTerm:
-          type: string
-        trainerID:
-          type: integer
     ClientInput:
       type: object
       required:
@@ -279,15 +235,59 @@ components:
           type: array
           items:
             type: string
+    ClientRef:
+      type: object
+      required:
+      - userID
+      properties:
+        userID:
+          type: integer
+          description: The ABC Trainerize user ID of the client.
+    ClientSearchInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        searchTerm:
+          type: string
+        trainerID:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+    Client:
+      allOf:
+      - $ref: '#/components/schemas/ClientInput'
+      - type: object
+        properties:
+          userID:
+            type: integer
+          status:
+            type: string
+            enum:
+            - active
+            - inactive
   responses:
-    ValidationError:
-      description: The request payload failed validation.
+    Unauthorized:
+      description: Missing or invalid credentials, or the plan does not include API access.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid credentials, or the plan does not include API access.
+    ValidationError:
+      description: The request payload failed validation.
       content:
         application/json:
           schema:

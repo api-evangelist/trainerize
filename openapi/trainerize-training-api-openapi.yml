@@ -173,20 +173,6 @@ components:
         userID:
           type: integer
           description: The ABC Trainerize user ID of the client.
-    StatusResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Workout:
       type: object
       properties:
@@ -199,6 +185,20 @@ components:
           format: date
         completed:
           type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    StatusResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Missing or invalid credentials, or the plan does not include API access.
