@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/11457/subscribe-new-trainerize-clients-to-a-mailchimp-mailing-list
   template: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/11457/subscribe-new-trainerize-clients-to-a-mailchimp-mailing-list
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-create-trainerize-clients-from-new-google-forms-responses
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/google-forms/17829/create-trainerize-clients-from-new-google-forms-responses
   template: https://zapier.com/apps/abc-trainerize/integrations/google-forms/17829/create-trainerize-clients-from-new-google-forms-responses
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-add-new-stripe-customers-as-trainerize-clients
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/stripe/11479/add-new-stripe-customers-as-trainerize-clients
   template: https://zapier.com/apps/abc-trainerize/integrations/stripe/11479/add-new-stripe-customers-as-trainerize-clients
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-create-clients-in-trainerize-from-new-typeform-entries
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/typeform/75087/create-clients-in-trainerize-from-new-typeform-entries
   template: https://zapier.com/apps/abc-trainerize/integrations/typeform/75087/create-clients-in-trainerize-from-new-typeform-entries
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-create-clients-in-trainerize-when-new-customers-are-added-in-square
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/square/75664/create-clients-in-trainerize-when-new-customers-are-added-in-square
   template: https://zapier.com/apps/abc-trainerize/integrations/square/75664/create-clients-in-trainerize-when-new-customers-are-added-in-square
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-request-signatures-in-signnow-from-new-trainerize-clients
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/signnow/11606/request-signatures-in-signnow-from-new-trainerize-clients
   template: https://zapier.com/apps/abc-trainerize/integrations/signnow/11606/request-signatures-in-signnow-from-new-trainerize-clients
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-create-trello-cards-for-new-trainerize-clients
@@ -99,6 +105,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/trello/160956/create-trello-cards-for-new-trainerize-clients
   template: https://zapier.com/apps/abc-trainerize/integrations/trello/160956/create-trello-cards-for-new-trainerize-clients
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-add-new-clients-in-trainerize-as-a-new-or-updated-subscriber-in-mailchimp
@@ -113,11 +120,12 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/121197/add-new-clients-in-trainerize-as-a-new-or-updated-subscriber-in-mailchimp
   template: https://zapier.com/apps/abc-trainerize/integrations/mailchimp/121197/add-new-clients-in-trainerize-as-a-new-or-updated-subscriber-in-mailchimp
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: trainerize-request-signatures-in-dropbox-sign-for-new-trainerize-clients
   label: Request signatures in Dropbox Sign for new Trainerize clients
-  partner: hellosign
+  partner: dropbox-sign
   partner_name: Dropbox Sign
   category: Signatures
   use_case: Request signatures in Dropbox Sign for new Trainerize clients
@@ -127,267 +135,7 @@
   evidence: https://zapier.com/apps/abc-trainerize/integrations/dropbox-sign/131076/request-signatures-in-dropbox-sign-for-new-trainerize-clients
   template: https://zapier.com/apps/abc-trainerize/integrations/dropbox-sign/131076/request-signatures-in-dropbox-sign-for-new-trainerize-clients
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-leadconnector
-  label: LeadConnector
-  partner_name: LeadConnector
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/leadconnector
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: trainerize-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-kajabi
-  label: Kajabi
-  partner: kajabi
-  partner_name: Kajabi
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/kajabi
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/activecampaign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-jotform
-  label: Jotform
-  partner: jotform
-  partner_name: Jotform
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/jotform
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-strava
-  label: Strava
-  partner: strava
-  partner_name: Strava
-  category: Fitness
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/strava
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-wix
-  label: Wix
-  partner: wix
-  partner_name: Wix
-  category: Website Builders
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/wix
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-aweber
-  label: AWeber
-  partner: aweber
-  partner_name: AWeber
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/aweber
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-paypal
-  label: PayPal
-  partner: paypal
-  partner_name: PayPal
-  category: Payment Processing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/paypal
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-flodesk
-  label: Flodesk
-  partner_name: Flodesk
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/flodesk
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: trainerize-kartra
-  label: Kartra
-  partner: kartra
-  partner_name: Kartra
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/kartra
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: trainerize-docusign
-  label: Docusign
-  partner: docusign
-  partner_name: Docusign
-  category: AI Document Extraction
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/docusign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-acuity-scheduling
-  label: Acuity Scheduling
-  partner: acuity-scheduling
-  partner_name: Acuity Scheduling
-  category: Scheduling & Booking
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/acuity-scheduling
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-google-sheets
-  label: Google Sheets
-  partner: google-sheets
-  partner_name: Google Sheets
-  category: Google
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/google-sheets
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-thrivecart
-  label: ThriveCart
-  partner: thrivecart
-  partner_name: ThriveCart
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/thrivecart
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-google-calendar
-  label: Google Calendar
-  partner: google-calendar
-  partner_name: Google Calendar
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/google-calendar
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-notion
-  label: Notion
-  partner: notion
-  partner_name: Notion
-  category: Task Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/notion
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: trainerize-skool
-  label: Skool
-  partner: skool
-  partner_name: Skool
-  category: Education
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/skool
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: trainerize-stan
-  label: Stan
-  partner: stan
-  partner_name: Stan
-  category: App Builder
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/stan-creator
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: trainerize-outgrow
-  label: Outgrow
-  partner_name: Outgrow
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/trainerize/integrations/outgrow
-  source: edge
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: trainerize-zapier
@@ -414,4 +162,287 @@
     beta: false
     builder: unknown (not in the directory record)
   status: not-a-workflow
+  arazzo: null
+- slug: trainerize-leadconnector
+  label: LeadConnector
+  partner_name: LeadConnector
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/leadconnector
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: trainerize-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-kajabi
+  label: Kajabi
+  partner: kajabi
+  partner_name: Kajabi
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/kajabi
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-jotform
+  label: Jotform
+  partner: jotform
+  partner_name: Jotform
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/jotform
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-strava
+  label: Strava
+  partner: strava
+  partner_name: Strava
+  category: Fitness
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/strava
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-wix
+  label: Wix
+  partner: wix
+  partner_name: Wix
+  category: Website Builders
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/wix
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-aweber
+  label: AWeber
+  partner: aweber
+  partner_name: AWeber
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/aweber
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-paypal
+  label: PayPal
+  partner: paypal
+  partner_name: PayPal
+  category: Payment Processing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/paypal
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-flodesk
+  label: Flodesk
+  partner_name: Flodesk
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/flodesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: trainerize-kartra
+  label: Kartra
+  partner: kartra
+  partner_name: Kartra
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/kartra
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: trainerize-docusign
+  label: Docusign
+  partner: docusign
+  partner_name: Docusign
+  category: AI Document Extraction
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/docusign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-acuity-scheduling
+  label: Acuity Scheduling
+  partner: acuity-scheduling
+  partner_name: Acuity Scheduling
+  category: Scheduling & Booking
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/acuity-scheduling
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-google-sheets
+  label: Google Sheets
+  partner: google-sheets
+  partner_name: Google Sheets
+  category: Google
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/google-sheets
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-thrivecart
+  label: ThriveCart
+  partner: thrivecart
+  partner_name: ThriveCart
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/thrivecart
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-notion
+  label: Notion
+  partner: notion
+  partner_name: Notion
+  category: Task Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/notion
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-google-calendar
+  label: Google Calendar
+  partner: google-calendar
+  partner_name: Google Calendar
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/google-calendar
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: trainerize-skool
+  label: Skool
+  partner: skool
+  partner_name: Skool
+  category: Education
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/skool
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: trainerize-stan
+  label: Stan
+  partner: stan
+  partner_name: Stan
+  category: App Builder
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/stan-creator
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: trainerize-outgrow
+  label: Outgrow
+  partner_name: Outgrow
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/trainerize/integrations/outgrow
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
   arazzo: null
