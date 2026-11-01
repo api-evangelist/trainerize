@@ -1,4 +1,4 @@
-# ABC Trainerize (trainerize)
+# ABC Trainerize
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,144 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-ABC Trainerize is a personal-training and fitness-coaching software platform for trainers, studios, and gyms - online training, workout programming, nutrition and meal planning, habit and goal tracking, in-app messaging, and a custom-branded client app. Its partner API lets integrators add, modify, and retrieve client data - clients, programs and workouts, goals, habits, body stats, nutrition, appointments, tags, and groups - and register webhooks for business events.
+ABC Trainerize is a personal-training and fitness-coaching software platform for trainers, studios, and gyms - online training, workout programming, nutrition and meal planning, habit and goal tracking, in-app messaging, and a custom-branded client app. Its partner API (Studio and Enterprise plans) lets integrators add, modify, and retrieve client data - clients, programs and workouts, goals, habits, body stats, nutrition, appointments, tags, and groups - and register webhooks for business events. ABC Trainerize is a product of ABC Fitness Solutions, which acquired Trainerize in 2021.
 
-> **Access model (read first).** The ABC Trainerize API is a **partner / private API, not open self-serve.** API access and webhook registration are available **only on the Studio and Enterprise plans**. Credentials (an **API key** and/or an **OAuth2** connection) are provisioned from the ABC Trainerize account settings. ABC Trainerize support explicitly does **not** help build API calls, and the full API reference lives behind the authenticated help center - there is **no openly published OpenAPI document**. Enterprise plans add dedicated integration support.
+**Areas:** Fitness · Personal Training · Coaching · Fitness Software · Client Management · Software-as-a-Service
 
-> **Parent company.** ABC Trainerize is a product of **ABC Fitness Solutions**, which acquired Trainerize in 2021. ABC Fitness also runs its own separate developer program at `developers.abcfitness.com`; that is a **different** API surface and is not conflated with the Trainerize API cataloged here.
+## ABC Trainerize on APIs.io
 
-> **Grounding & honesty note.** The API **host and version prefix** (`https://api.trainerize.com/v03`) were **confirmed live** by direct probing on 2026-07-12 (TLS 1.3, Microsoft-IIS 10 / ASP.NET Web API, behind Cloudflare + AWS ELB; the `/v03` prefix returns 200, and unknown sub-paths return ASP.NET "No HTTP resource was found" 404s). The **individual operation paths and request/response schemas** in the OpenAPI and collections are **MODELED** from ABC Trainerize's publicly documented capabilities (the help center API/webhooks article and the published Zapier / Latenode partner action catalog) - they are representative, not copied from a public reference. Treat exact paths, parameter names, and payloads as illustrative and verify against the gated docs before implementation.
+Everything profiled for ABC Trainerize is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/trainerize/](https://apis.io/providers/trainerize/)** — or go straight to one of the APIs or properties below.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/trainerize/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/trainerize/refs/heads/main/apis.yml)
+### APIs (5)
 
-## Tags
+- [ABC Trainerize Client Data API](https://apis.io/apis/trainerize/trainerize-client-data-api/) — Retrieve and modify client goals, habits, body stats, nutrition, and appointments.
+- [ABC Trainerize Clients API](https://apis.io/apis/trainerize/trainerize-clients-api/) — Create, update, find, and manage clients, trainer assignment, tags, and groups.
+- [ABC Trainerize Messaging API](https://apis.io/apis/trainerize/trainerize-messaging-api/) — Send in-app messages and upload attachments / meal-plan PDFs to clients.
+- [ABC Trainerize Training API](https://apis.io/apis/trainerize/trainerize-training-api/) — Assign programs and workouts to clients - copy master programs, subscribe to main/add-on programs, and add training phases.
+- [ABC Trainerize Webhooks API](https://apis.io/apis/trainerize/trainerize-webhooks-api/) — Register and manage webhook subscriptions for ABC Trainerize business events.
 
-- Fitness
-- Personal Training
-- Coaching
-- Fitness Software
-- Client Management
-- SaaS
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-07-12
-- **Modified:** 2026-07-12
+#### Agentic access (1)
 
-## APIs
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### ABC Trainerize Clients API
+- [Trainerize Agentic Access](https://apis.io/agentic-access/trainerize/trainerize-agentic-access/)
 
-Create, update, find, deactivate, and reactivate clients; assign clients to trainers; and manage client tags and group membership. Used to onboard clients from a form or sync them with a CRM.
+#### Collections (6)
 
-- **Human URL:** [Using API and Webhooks With ABC Trainerize](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- **Base URL:** `https://api.trainerize.com/v03`
+Postman and Open Collection request collections.
 
-#### Tags
+- [ABC Trainerize API](https://apis.io/collections/trainerize/open-trainerize/)
+- [ABC Trainerize Client Data API](https://apis.io/collections/trainerize/open-trainerize-client-data-api/)
+- [ABC Trainerize Client Data Clients API](https://apis.io/collections/trainerize/open-trainerize-clients-api/)
+- [ABC Trainerize Client Data Messaging API](https://apis.io/collections/trainerize/open-trainerize-messaging-api/)
+- [ABC Trainerize Client Data Training API](https://apis.io/collections/trainerize/open-trainerize-training-api/)
+- [ABC Trainerize Client Data Webhooks API](https://apis.io/collections/trainerize/open-trainerize-webhooks-api/)
 
-- Clients
-- Client Management
-- CRM
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [OpenAPI](openapi/trainerize-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trainerize.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trainerize.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Trainerize Authentication](https://apis.io/security/trainerize/trainerize-authentication/)
+- [Trainerize Domain Security](https://apis.io/security/trainerize/trainerize-domain-security/)
 
-### ABC Trainerize Training Programs API
+#### Plans and pricing (1)
 
-Assign training to clients - copy a master program onto a client, subscribe a client to a main or add-on program, unsubscribe from programs, add the next training phase, and retrieve a client's workouts.
+Published plans, tiers and prices.
 
-- **Human URL:** [Using API and Webhooks With ABC Trainerize](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- **Base URL:** `https://api.trainerize.com/v03`
+- [Trainerize Plans Pricing](https://apis.io/plans/trainerize/trainerize-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Workout Programming
-- Programs
-- Workouts
+Published request limits.
 
-#### Properties
+- [Trainerize Rate Limits](https://apis.io/rate-limits/trainerize/trainerize-rate-limits/)
 
-- [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [OpenAPI](openapi/trainerize-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trainerize.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trainerize.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-### ABC Trainerize Client Data API
+What the API costs to run, by operation.
 
-Add, modify, and retrieve a client's goals, habits, body stats, nutrition, and appointments.
+- [Trainerize Finops](https://apis.io/finops/trainerize/trainerize-finops/)
 
-- **Human URL:** [Using API and Webhooks With ABC Trainerize](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- **Base URL:** `https://api.trainerize.com/v03`
+## Where to find this API
 
-#### Tags
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- Goals
-- Habits
-- Nutrition
-
-#### Properties
-
-- [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [OpenAPI](openapi/trainerize-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trainerize.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trainerize.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### ABC Trainerize Messaging API
-
-Send in-app messages to clients and upload attachments such as meal-plan PDFs.
-
-- **Human URL:** [Using API and Webhooks With ABC Trainerize](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- **Base URL:** `https://api.trainerize.com/v03`
-
-#### Tags
-
-- Messaging
-- Attachments
-- Communication
-
-#### Properties
-
-- [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [OpenAPI](openapi/trainerize-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trainerize.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trainerize.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### ABC Trainerize Webhooks API
-
-Register, list, and delete webhook subscriptions that notify an external system when a business event occurs - workout completed, cardio completed, habit completed, daily nutrition goal hit, weight goal hit, new client, new purchase, product start/end, auto-renew cancelled, and tag added/removed. Webhooks are one-way, server-to-endpoint HTTP POSTs.
-
-- **Human URL:** [Using API and Webhooks With ABC Trainerize](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- **Base URL:** `https://api.trainerize.com/v03`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [OpenAPI](openapi/trainerize-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/trainerize.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/trainerize.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Domain Security](security/trainerize-domain-security.yml)
-- [Authentication](authentication/trainerize-authentication.yml)
-- [LinkedIn](https://www.linkedin.com/company/trainerize)
 - [Website](https://www.trainerize.com)
 - [Documentation](https://help.trainerize.com/hc/en-us/articles/37082084919060-Using-API-and-Webhooks-With-ABC-Trainerize)
-- [Plans](plans/trainerize-plans-pricing.yml)
-- [Rate Limits](rate-limits/trainerize-rate-limits.yml)
-- [Fin Ops](finops/trainerize-finops.yml)
+- [Blog](https://www.trainerize.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.1** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 40.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/trainerize/](https://apis.io/providers/trainerize/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ABC Trainerize: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/trainerize/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
